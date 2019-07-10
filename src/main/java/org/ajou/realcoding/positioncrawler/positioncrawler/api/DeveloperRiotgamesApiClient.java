@@ -1,10 +1,15 @@
 package org.ajou.realcoding.positioncrawler.positioncrawler.api;
 
 import org.ajou.realcoding.positioncrawler.positioncrawler.domain.EncryptedSummonerId;
+import org.ajou.realcoding.positioncrawler.positioncrawler.domain.LeaguePosition;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Service
 public class DeveloperRiotgamesApiClient {
@@ -17,5 +22,11 @@ public class DeveloperRiotgamesApiClient {
 
     public EncryptedSummonerId requestEncryptedSummonerId (String summonerName) {
         return restTemplate.exchange(developerRiotgamesSummonerUrl, HttpMethod.GET, null, EncryptedSummonerId.class, summonerName, appid).getBody();
+    }
+
+    public List<LeaguePosition> requestLeaguePosition (String encryptedSummonerId) {
+        ResponseEntity<List<LeaguePosition>> actualLeaguePosition = restTemplate.exchange(developerRiotgamesLeagueUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<LeaguePosition>>() {}, encryptedSummonerId, appid);
+        List<LeaguePosition> LeaguePositionList = actualLeaguePosition.getBody();
+        return LeaguePositionList;
     }
 }
