@@ -1,4 +1,4 @@
-package org.ajou.realcoding.positioncrawler.positioncrawler.api;
+package org.ajou.realcoding.positioncrawler.positioncrawler.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
