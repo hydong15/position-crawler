@@ -1,6 +1,8 @@
 package org.ajou.realcoding.positioncrawler.positioncrawler.api;
 
+import org.ajou.realcoding.positioncrawler.positioncrawler.domain.EncryptedSummonerId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,4 +14,8 @@ public class DeveloperRiotgamesApiClient {
 
     @Autowired
     RestTemplate restTemplate;
+
+    public EncryptedSummonerId requestEncryptedSummonerId (String summonerName) {
+        return restTemplate.exchange(developerRiotgamesSummonerUrl, HttpMethod.GET, null, EncryptedSummonerId.class, summonerName, appid).getBody();
+    }
 }
