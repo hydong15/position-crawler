@@ -28,6 +28,6 @@ public class PositionService {
         List<LeaguePosition> leaguePositionList = developerRiotgamesApiClient.requestLeaguePosition(encryptedSummonerId);
         leaguePositionRepository.insertLeaguePosition(leaguePositionList);
         log.info("League position has been inserted successfully. ()", leaguePositionList);
-        return leaguePositionList;
+        return leaguePositionRepository.findLeaguePosition(encryptedSummonerId);
     }
 }
