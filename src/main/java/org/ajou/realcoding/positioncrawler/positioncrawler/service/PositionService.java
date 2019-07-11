@@ -28,7 +28,8 @@ public class PositionService {
         List<LeaguePosition> leaguePositionList = developerRiotgamesApiClient.requestLeaguePosition(encryptedSummonerId);
 
         if (leaguePositionRepository.isExistLeaguePosition(leaguePositionList)) {
-            //update
+            leaguePositionRepository.updateLeaguePosition(leaguePositionList);
+            log.info("League position has been updated successfully. ()", leaguePositionList);
         }
         else {
             leaguePositionRepository.insertLeaguePosition(leaguePositionList);

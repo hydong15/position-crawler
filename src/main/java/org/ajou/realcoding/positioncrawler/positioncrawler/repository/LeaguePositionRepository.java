@@ -23,6 +23,11 @@ public class LeaguePositionRepository {
         }
     }
 
+    //WIP
+    public void updateLeaguePosition(List<LeaguePosition> leaguePosition) {
+        //mongoTemplate.update()
+    }
+
     public void insertLeaguePosition(List<LeaguePosition> leaguePosition) {
         mongoTemplate.insert(leaguePosition, LeaguePosition.class);
     }
