@@ -14,6 +14,15 @@ public class LeaguePositionRepository {
     @Autowired
     MongoTemplate mongoTemplate;
 
+    public boolean isExistLeaguePosition(List<LeaguePosition> leaguePosition) {
+        if (mongoTemplate.exists(Query.query(Criteria.where("summonerId").is(leaguePosition.get(0).getSummonerId())), LeaguePosition.class)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public void insertLeaguePosition(List<LeaguePosition> leaguePosition) {
         mongoTemplate.insert(leaguePosition, LeaguePosition.class);
     }
