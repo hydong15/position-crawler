@@ -25,8 +25,6 @@ public class DeveloperRiotgamesApiClient {
     }
 
     public List<LeaguePosition> requestLeaguePosition (String encryptedSummonerId) {
-        ResponseEntity<List<LeaguePosition>> actualLeaguePosition = restTemplate.exchange(developerRiotgamesLeagueUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<LeaguePosition>>() {}, encryptedSummonerId, appid);
-        List<LeaguePosition> LeaguePositionList = actualLeaguePosition.getBody();
-        return LeaguePositionList;
+        return restTemplate.exchange(developerRiotgamesLeagueUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<LeaguePosition>>() {}, encryptedSummonerId, appid).getBody();
     }
 }
