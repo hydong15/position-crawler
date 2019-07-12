@@ -26,14 +26,15 @@ public class PositionService {
     public List<LeaguePosition> getLeaguePositionBySummonerName(String summonerName) {
         String encryptedSummonerId = getEncryptedSummonerId(summonerName);
         List<LeaguePosition> leaguePositionList = developerRiotgamesApiClient.requestLeaguePosition(encryptedSummonerId);
+        log.info("leaguePositionList: " + leaguePositionList);
 
         if (leaguePositionRepository.isExistLeaguePosition(leaguePositionList)) {
             leaguePositionRepository.updateLeaguePosition(leaguePositionList);
-            log.info("League position has been updated successfully. ()", leaguePositionList);
+            log.info("League position has been updated successfully. ()");
         }
         else {
             leaguePositionRepository.insertLeaguePosition(leaguePositionList);
-            log.info("League position has been inserted successfully. ()", leaguePositionList);
+            log.info("League position has been inserted successfully. ()");
         }
 
         return leaguePositionRepository.findLeaguePosition(encryptedSummonerId);
