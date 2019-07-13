@@ -27,6 +27,7 @@ public class PositionService {
         String encryptedSummonerId = this.getEncryptedSummonerId(summonerName);
         List<LeaguePosition> leaguePositionList = developerRiotgamesApiClient.requestLeaguePosition(encryptedSummonerId);
 
+        //use summoner name and queuetype as id
         for (LeaguePosition position : leaguePositionList) {
             position.setId(position.getSummonerName() + position.getQueueType());
         }
