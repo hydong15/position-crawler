@@ -24,19 +24,26 @@ public class PositionService {
     }
 
     public List<LeaguePosition> getLeaguePositionBySummonerName(String summonerName) {
-        String encryptedSummonerId = getEncryptedSummonerId(summonerName);
+        String encryptedSummonerId = this.getEncryptedSummonerId(summonerName);
         List<LeaguePosition> leaguePositionList = developerRiotgamesApiClient.requestLeaguePosition(encryptedSummonerId);
+
+        for (LeaguePosition position : leaguePositionList) {
+            position.setId(position.getSummonerName() + position.getQueueType());
+        }
+
         log.info("leaguePositionList: " + leaguePositionList);
 
-        if (leaguePositionRepository.isExistLeaguePosition(leaguePositionList)) {
-            leaguePositionRepository.updateLeaguePosition(leaguePositionList);
-            log.info("League position has been updated successfully. ()");
-        }
-        else {
-            leaguePositionRepository.insertLeaguePosition(leaguePositionList);
-            log.info("League position has been inserted successfully. ()");
-        }
+        //Using mongoTemplate.insert() and mongoTemplate.update()
+//        if (leaguePositionRepository.isExistLeaguePosition(leaguePositionList)) {
+//            leaguePositionRepository.updateLeaguePosition(leaguePositionList);
+//            log.info("League position has been updated successfully. ()");
+//        }
+//        else {
+//            leaguePositionRepository.insertLeaguePosition(leaguePositionList);
+//            log.info("League position has been inserted successfully. ()");
+//        }
 
+        leaguePositionRepository.insertOrUpdateLeaguePosition(leaguePositionList);
         return leaguePositionRepository.findLeaguePosition(encryptedSummonerId);
     }
 }
