@@ -34,16 +34,6 @@ public class PositionService {
 
         log.info("leaguePositionList: " + leaguePositionList);
 
-        //Using mongoTemplate.insert() and mongoTemplate.update()
-//        if (leaguePositionRepository.isExistLeaguePosition(leaguePositionList)) {
-//            leaguePositionRepository.updateLeaguePosition(leaguePositionList);
-//            log.info("League position has been updated successfully. ()");
-//        }
-//        else {
-//            leaguePositionRepository.insertLeaguePosition(leaguePositionList);
-//            log.info("League position has been inserted successfully. ()");
-//        }
-
         leaguePositionRepository.insertOrUpdateLeaguePosition(leaguePositionList);
         return leaguePositionRepository.findLeaguePosition(encryptedSummonerId);
     }
