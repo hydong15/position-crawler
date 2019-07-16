@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class DeveloperRiotgamesApiClient {
-    private final String appid = "RGAPI-82aa7b28-11a8-4209-a55d-0bb5a29fae3c";
+    private final String appid = "RGAPI-4de1631b-8468-4ab6-b4ab-b48c7a54c534";
     private final String developerRiotgamesSummonerUri = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key={appid}";
     private final String developerRiotgamesLeagueUri = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{encryptedSummonerId}?api_key={appid}";
 
