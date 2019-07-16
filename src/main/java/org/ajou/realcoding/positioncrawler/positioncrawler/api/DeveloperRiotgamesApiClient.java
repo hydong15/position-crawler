@@ -12,18 +12,18 @@ import java.util.List;
 
 @Service
 public class DeveloperRiotgamesApiClient {
-    private final String appid = "RGAPI-0ccc57bc-f3c5-4c3d-99fd-a1399044794f";
-    private final String developerRiotgamesSummonerUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key={appid}";
-    private final String developerRiotgamesLeagueUrl = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{encryptedSummonerId}?api_key={appid}";
+    private final String appid = "RGAPI-82aa7b28-11a8-4209-a55d-0bb5a29fae3c";
+    private final String developerRiotgamesSummonerUri = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key={appid}";
+    private final String developerRiotgamesLeagueUri = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{encryptedSummonerId}?api_key={appid}";
 
     @Autowired
     RestTemplate restTemplate;
 
     public EncryptedSummonerId requestEncryptedSummonerId (String summonerName) {
-        return restTemplate.exchange(developerRiotgamesSummonerUrl, HttpMethod.GET, null, EncryptedSummonerId.class, summonerName, appid).getBody();
+        return restTemplate.exchange(developerRiotgamesSummonerUri, HttpMethod.GET, null, EncryptedSummonerId.class, summonerName, appid).getBody();
     }
 
     public List<LeaguePosition> requestLeaguePosition (String encryptedSummonerId) {
-        return restTemplate.exchange(developerRiotgamesLeagueUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<LeaguePosition>>() {}, encryptedSummonerId, appid).getBody();
+        return restTemplate.exchange(developerRiotgamesLeagueUri, HttpMethod.GET, null, new ParameterizedTypeReference<List<LeaguePosition>>() {}, encryptedSummonerId, appid).getBody();
     }
 }
