@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 public class LeaguePositionRepository {
     @Autowired
+    private
     MongoTemplate mongoTemplate;
 
     public void insertOrUpdateLeaguePosition(List<LeaguePosition> leaguePosition) {

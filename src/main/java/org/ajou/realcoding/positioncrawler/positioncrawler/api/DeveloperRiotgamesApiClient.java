@@ -17,6 +17,7 @@ public class DeveloperRiotgamesApiClient {
     private final String developerRiotgamesLeagueUri = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{encryptedSummonerId}?api_key={appid}";
 
     @Autowired
+    private
     RestTemplate restTemplate;
 
     public EncryptedSummonerId requestEncryptedSummonerId (String summonerName) {

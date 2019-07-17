@@ -14,11 +14,13 @@ import java.util.List;
 @Slf4j
 public class PositionService {
     @Autowired
+    private
     DeveloperRiotgamesApiClient developerRiotgamesApiClient;
     @Autowired
+    private
     LeaguePositionRepository leaguePositionRepository;
 
-    public String getEncryptedSummonerId(String summonerName) {
+    private String getEncryptedSummonerId(String summonerName) {
         EncryptedSummonerId encryptedSummonerId = developerRiotgamesApiClient.requestEncryptedSummonerId(summonerName);
         return encryptedSummonerId.getId();
     }
@@ -31,7 +33,7 @@ public class PositionService {
         return leaguePositionRepository.findLeaguePosition(encryptedSummonerId);
     }
 
-    public void setIdBySummonerNameAndQueueType(List<LeaguePosition> leaguePositionList) {
+    private void setIdBySummonerNameAndQueueType(List<LeaguePosition> leaguePositionList) {
         for (LeaguePosition position : leaguePositionList) {
             position.setId(position.getSummonerName() + position.getQueueType());
         }

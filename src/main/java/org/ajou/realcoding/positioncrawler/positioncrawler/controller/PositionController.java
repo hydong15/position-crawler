@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 public class PositionController {
     @Autowired
+    private
     PositionService positionService;
 
     @GetMapping("/position-crawler/league-positions/by-summoner-name/{summonerName}")

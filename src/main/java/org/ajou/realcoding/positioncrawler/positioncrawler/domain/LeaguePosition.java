@@ -23,7 +23,7 @@ public class LeaguePosition {
     private String id;
 
     @Data
-    public static class MiniSeriesDTO {
+    private static class MiniSeriesDTO {
         private String progress;
         private int losses;
         private int target;
